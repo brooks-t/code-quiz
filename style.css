@@ -30,6 +30,8 @@ main {
 
 #start-quiz {
     text-align: center;
+    display: none; 
+    /* will undo this display none after I'm done styling question */
 }
 
 #start-quiz h1 {
@@ -49,6 +51,6 @@ main {
     transform: scale(1.1);
 }
 
-#questions {
-    display: none;
+#question-box {
+    display: flex;
 }

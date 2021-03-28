@@ -2,14 +2,22 @@ var secondsRemaining = 76;
 var startButton = document.querySelector("#start-button");
 var startQuiz = document.querySelector("#start-quiz");
 var countDown = document.querySelector("#count-down");
+var currentQuestion = 0;
+var questionBox = document.querySelector("#question-box");
+var questionHeader = document.querySelector("#question-header");
+var answer1 = document.querySelector("#answer-1");
+var answer2 = document.querySelector("#answer-2");
+var answer3 = document.querySelector("#answer-3");
+var answer4 = document.querySelector("#answer-4");
+var verdict = document.querySelector("#verdict");
 
 var quiz = [
     {
-        question: "question1TBD",
-        answer1: "answer1-1TBD",
-        answer2: "answer1-2TBD",
-        answer3: "answer1-3TBD",
-        answer4: "answer1-4TBD"
+        question: "The condition in an if/else statement is enclosed within ____.",
+        answer1: "1. quotes",
+        answer2: "2. curly brackets",
+        answer3: "3. parentheses",
+        answer4: "4. square brackets"
     },
     {
         question: "question2TBD",
@@ -41,7 +49,7 @@ var quiz = [
     },
 ]
 
-console.log(quiz);
+
 
 function setTimer () {
     var timer = setInterval(function() {
@@ -53,8 +61,21 @@ function setTimer () {
     }, 1000);
 }
 
+function nextQuestion () {
+    
+ 
+}
+
 startButton.addEventListener("click", function () {
     startQuiz.setAttribute("style", "display: none");
+    questionBox.setAttribute("style", "display: flex");
     setTimer();
+    nextQuestion();
 })
+
+console.log(quiz);
+
+//var randomQuestion = Math.floor(Math.random() * quiz.length);
+//console.log(randomQuestion);
+
 
