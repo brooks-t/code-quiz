@@ -14,7 +14,7 @@ var score = 0;
 
 var quiz = [
     {
-        question: "The condition in an if/else statement is enclosed within ____.",
+        question: "The condition in an if/else statement is enclosed within _____.",
         answer1: "1. quotes",
         answer2: "2. curly brackets",
         answer3: "3. parentheses",
@@ -22,32 +22,36 @@ var quiz = [
         correct: "3. parentheses"
     },
     {
-        question: "question2TBD",
-        answer1: "answer2-1TBD",
-        answer2: "answer2-2TBD",
-        answer3: "answer2-3TBD",
-        answer4: "answer2-4TBD"
+        question: "Commonly used datatypes DO NOT include:",
+        answer1: "1. strings",
+        answer2: "2. booleans",
+        answer3: "3. alerts",
+        answer4: "4. numbers",
+        correct: "3. alerts"
     },
     {
-        question: "question3TBD",
-        answer1: "answer3-1TBD",
-        answer2: "answer3-2TBD",
-        answer3: "answer3-3TBD",
-        answer4: "answer3-4TBD"
+        question: "Arrays in JavaScript can be used to store _____",
+        answer1: "1. numbers and strings",
+        answer2: "2. other arrays",
+        answer3: "3. booleans",
+        answer4: "4. all of the above",
+        correct: "4. all of the above"
     },
     {
-        question: "question4TBD",
-        answer1: "answer4-1TBD",
-        answer2: "answer4-2TBD",
-        answer3: "answer4-3TBD",
-        answer4: "answer4-4TBD"
+        question: "String values must be enclosed within _____",
+        answer1: "1. commas",
+        answer2: "2. curly brackets",
+        answer3: "3. quotes",
+        answer4: "4. parentheses",
+        correct: "3. quotes"
     },
     {
-        question: "question5TBD",
-        answer1: "answer5-1TBD",
-        answer2: "answer5-2TBD",
-        answer3: "answer5-3TBD",
-        answer4: "answer5-4TBD"
+        question: "A very useful tool used during development and debugging for printing content to the debugger is:",
+        answer1: "1. JavaScript",
+        answer2: "2. terminal/bash",
+        answer3: "3. for loops",
+        answer4: "4. console log",
+        correct: "4. console log"
     },
 ]
 
@@ -64,31 +68,31 @@ function setTimer () {
 }
 
 function nextQuestion () {
-        questionHeader.textContent = quiz[qNum].question;
-        answer1.textContent = quiz[qNum].answer1;
-        answer2.textContent = quiz[qNum].answer2;
-        answer3.textContent = quiz[qNum].answer3;
-        answer4.textContent = quiz[qNum].answer4;
-        questionBox.addEventListener("click", function(event) {
-            var element = event.target;
+    questionHeader.textContent = quiz[qNum].question;
+    answer1.textContent = quiz[qNum].answer1;
+    answer2.textContent = quiz[qNum].answer2;
+    answer3.textContent = quiz[qNum].answer3;
+    answer4.textContent = quiz[qNum].answer4;
+    questionBox.addEventListener("click", function(event) {
+        var element = event.target;
 
-            if (element.matches("button")) {
-                var answer = event.target.textContent;
-                console.log(answer);
-                if (answer === quiz[qNum].correct) {
-                    verdict.textContent = "Correct!";
-                    verdict.setAttribute("style", "visibility:visible; color: green");
-                    score++;
-                } else {
-                    verdict.textContent = "Wrong!";
-                    verdict.setAttribute("style", "visibility: visible; color: red");
-                    secondsRemaining = secondsRemaining-10;
-                }
+        if (element.matches("button")) {
+            var answer = event.target.textContent;
+            console.log(answer);
+            if (answer === quiz[qNum].correct) {
+                verdict.textContent = "Correct!";
+                verdict.setAttribute("style", "visibility:visible; color: green");
+                score++;
+            } else {
+                verdict.textContent = "Wrong!";
+                verdict.setAttribute("style", "visibility: visible; color: red");
+                secondsRemaining = secondsRemaining-10;
             }
-        })
-
-        //qNum++;
-    }
+        }
+    })
+    qNum++;
+    nextQuestion();
+}
 
 startButton.addEventListener("click", function () {
     startQuiz.setAttribute("style", "display: none");
