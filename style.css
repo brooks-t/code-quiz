@@ -30,7 +30,6 @@ main {
 
 #start-quiz {
     text-align: center;
-    display: none; 
     /* will undo this display none after I'm done styling question */
 }
 
@@ -52,7 +51,7 @@ main {
 }
 
 #question-box {
-    display: flex;
+    display: none;
     flex-wrap: wrap;
     flex-direction: column;
     align-items: flex-start;

@@ -2,7 +2,7 @@ var secondsRemaining = 76;
 var startButton = document.querySelector("#start-button");
 var startQuiz = document.querySelector("#start-quiz");
 var countDown = document.querySelector("#count-down");
-var currentQuestion = 0;
+var qNum = 0;
 var questionBox = document.querySelector("#question-box");
 var questionHeader = document.querySelector("#question-header");
 var answer1 = document.querySelector("#answer-1");
@@ -10,6 +10,7 @@ var answer2 = document.querySelector("#answer-2");
 var answer3 = document.querySelector("#answer-3");
 var answer4 = document.querySelector("#answer-4");
 var verdict = document.querySelector("#verdict");
+var score = 0;
 
 var quiz = [
     {
@@ -17,7 +18,8 @@ var quiz = [
         answer1: "1. quotes",
         answer2: "2. curly brackets",
         answer3: "3. parentheses",
-        answer4: "4. square brackets"
+        answer4: "4. square brackets",
+        correct: "3. parentheses"
     },
     {
         question: "question2TBD",
@@ -62,9 +64,31 @@ function setTimer () {
 }
 
 function nextQuestion () {
-    
- 
-}
+        questionHeader.textContent = quiz[qNum].question;
+        answer1.textContent = quiz[qNum].answer1;
+        answer2.textContent = quiz[qNum].answer2;
+        answer3.textContent = quiz[qNum].answer3;
+        answer4.textContent = quiz[qNum].answer4;
+        questionBox.addEventListener("click", function(event) {
+            var element = event.target;
+
+            if (element.matches("button")) {
+                var answer = event.target.textContent;
+                console.log(answer);
+                if (answer === quiz[qNum].correct) {
+                    verdict.textContent = "Correct!";
+                    verdict.setAttribute("style", "visibility:visible; color: green");
+                    score++;
+                } else {
+                    verdict.textContent = "Wrong!";
+                    verdict.setAttribute("style", "visibility: visible; color: red");
+                    secondsRemaining = secondsRemaining-10;
+                }
+            }
+        })
+
+        //qNum++;
+    }
 
 startButton.addEventListener("click", function () {
     startQuiz.setAttribute("style", "display: none");
