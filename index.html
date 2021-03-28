@@ -4,25 +4,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TITLE</title>
-  <link rel="stylesheet" type="text/css" src="./reset.css">
-  <link rel="stylesheet" type="text/css" src="./style.css">
+  <title>Code Quiz</title>
+  <link rel="stylesheet" type="text/css" href="reset.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <body>
-  <h1 style="text-align:center;">Open the Console to See the Magic ✨! </h1>
+  <header>
+    <a href="#">View Highscores</a>
+    <p>Time: <spand id="count-down">0</spand></p>
+  </header>
+  <main>
+    <section id="start-quiz">
+      <h1>Coding Quiz Challenge</h1>
+      <br>
+      <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
+      <br>
+      <button id="start-button">Start Quiz</button>
+    </section>
+    <section id="question-box">
+      <!-- you'll use js to write to these from questions and answers stored as objects-->
+      <h2 id="question"></h2>
+      <button id="answer-1"></button>
+      <button id="answer-2"></button>
+      <button id="answer-3"></button>
+      <button id="answer-4"></button>
+      <p id="verdict"></p>
+    </section>
 
-  <!--Inline script-->
+  </main>
 
-  <script>
-
-    //Console logs write data directly to the console.
-
-    console.log("This is the log for the 🔥INLINE🔥 JavaScript");
-
-  </script>
-
-  <!--Link to external JavaScript file-->
 
   <script src="script.js"></script>
 
