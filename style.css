@@ -30,6 +30,7 @@ main {
 
 #start-quiz {
     text-align: center;
+    display: none;
     /* will undo this display none after I'm done styling question */
 }
 
@@ -89,3 +90,49 @@ main {
     font-style: italic;
     visibility: hidden;
 }
+
+#all-done {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+#all-done h2 {
+    font-size: 150%;
+}
+
+#final-text {
+    margin-top: 3%;
+}
+
+#form-initials {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    border: 1px solid chartreuse;
+    height: 50px;
+    position: relative;
+}
+
+#initials {
+    margin: 0 2% 0 2%;
+    width: 20%;
+    height: 25px;
+}
+
+#submit {
+    padding: 1%;
+    background-color: slateblue;
+    color: white;
+    border-radius: 5px;
+    height: 25px;
+}
+
+#submit:hover {
+    opacity: 70%;
+    transform: scale(1.1);
+}
+

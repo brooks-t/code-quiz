@@ -90,8 +90,16 @@ function nextQuestion () {
             }
         }
     })
+    
     qNum++;
-    nextQuestion();
+
+    if (qNum < quiz.length) {
+        nextQuestion();
+    }  
+}
+
+function allDone () {
+    questionBox.setAttribute("style", "display: none");
 }
 
 startButton.addEventListener("click", function () {
