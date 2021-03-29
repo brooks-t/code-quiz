@@ -14,6 +14,8 @@ var score = 0;
 var allDone = document.querySelector("#all-done");
 var finalScore = document.querySelector("#final-score");
 
+
+
 var quiz = [
     {
         question: "The condition in an if/else statement is enclosed within _____.",
@@ -119,6 +121,20 @@ function finalScreen () {
     questionBox.setAttribute("style", "display: none");
     allDone.setAttribute("style", "display: flex");
     finalScore.textContent = score;
+    
+    submit.addEventListener("click", function(event) {
+        event.preventDefault();
+
+        var highScore = {
+            initials: initials.value,
+            score: score
+        }
+
+        localStorage.setItem("highScore", JSON.stringify(highScore));
+        console.log(highScore);
+
+    })
+
 }
 
 questionBox.addEventListener("click", buttonClick);  
