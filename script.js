@@ -117,10 +117,16 @@ function buttonClick (event) {
     } 
 }
 
+function stopTimer () {
+    clearInterval(secondsRemaining);
+}
+
+//TODO: clear the timer
 function finalScreen () {
     questionBox.setAttribute("style", "display: none");
     allDone.setAttribute("style", "display: flex");
     finalScore.textContent = score;
+    stopTimer();
     
     submit.addEventListener("click", function(event) {
         event.preventDefault();
