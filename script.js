@@ -69,8 +69,6 @@ function setTimer () {
 
 //You're stuck here. Can't figure out why it only works for the first question. WHen I try to answer the next questions it fires twice on that same button.
 function nextQuestion () {
-    console.log("qNum from the top: " + qNum); //checking the qNum at the top of the function
-    // Loading next question and answers
     questionHeader.textContent = quiz[qNum].question;
     answer1.textContent = quiz[qNum].answer1;
     answer2.textContent = quiz[qNum].answer2;
@@ -80,7 +78,7 @@ function nextQuestion () {
 
 function buttonClick (event) {
     event.stopPropagation();
-    var element = event.target;
+    var element = event.target; // TODO: is this the place to check for final screen button?
     if (element.matches("button")) {
         var answer = event.target.textContent;
         console.log("Your answer: " + answer); //checking the click
@@ -88,31 +86,42 @@ function buttonClick (event) {
         if (answer === quiz[qNum].correct) {
             verdict.textContent = "Correct!";
             verdict.setAttribute("style", "visibility:visible; color: green");
-            score++;
+            score = score + 20;
+            console.log("Score is: " + score);
             element.blur();
             qNum++;
             console.log("qNum is now: " + qNum); // what is qNum now?
-            nextQuestion();
+            if (qNum < quiz.length) {
+                nextQuestion();
+            }
+            else {
+                finalScreen();
+            }
         } else {
             verdict.textContent = "Wrong!";
             verdict.setAttribute("style", "visibility: visible; color: red");
             secondsRemaining = secondsRemaining-10;
             element.blur();
             qNum++;
+            console.log("Score is: " + score);
             console.log("qNum is now: " + qNum); // what is qNum now?
-            nextQuestion();
+            if (qNum < quiz.length) {
+                nextQuestion();
+            }
+            else {
+                finalScreen();
+            }  
         }
-    }
+    } 
 }
-
-//questionBox.removeEventListener("click", buttonClick);
-questionBox.addEventListener("click", buttonClick);  
 
 function finalScreen () {
     questionBox.setAttribute("style", "display: none");
     allDone.setAttribute("style", "display: flex");
-    finalScore.textContent(score);
+    finalScore.textContent = score;
 }
+
+questionBox.addEventListener("click", buttonClick);  
 
 startButton.addEventListener("click", function () {
     startQuiz.setAttribute("style", "display: none");
