@@ -11,6 +11,8 @@ var answer3 = document.querySelector("#answer-3");
 var answer4 = document.querySelector("#answer-4");
 var verdict = document.querySelector("#verdict");
 var score = 0;
+var allDone = document.querySelector("#all-done");
+var finalScore = document.querySelector("#final-score");
 
 var quiz = [
     {
@@ -55,8 +57,6 @@ var quiz = [
     },
 ]
 
-
-
 function setTimer () {
     var timer = setInterval(function() {
         secondsRemaining--;
@@ -67,45 +67,57 @@ function setTimer () {
     }, 1000);
 }
 
+//You're stuck here. Can't figure out why it only works for the first question. WHen I try to answer the next questions it fires twice on that same button.
 function nextQuestion () {
+    console.log("qNum from the top: " + qNum); //checking the qNum at the top of the function
+    // Loading next question and answers
     questionHeader.textContent = quiz[qNum].question;
     answer1.textContent = quiz[qNum].answer1;
     answer2.textContent = quiz[qNum].answer2;
     answer3.textContent = quiz[qNum].answer3;
     answer4.textContent = quiz[qNum].answer4;
-    questionBox.addEventListener("click", function(event) {
-        var element = event.target;
-
-        if (element.matches("button")) {
-            var answer = event.target.textContent;
-            console.log(answer);
-            if (answer === quiz[qNum].correct) {
-                verdict.textContent = "Correct!";
-                verdict.setAttribute("style", "visibility:visible; color: green");
-                score++;
-            } else {
-                verdict.textContent = "Wrong!";
-                verdict.setAttribute("style", "visibility: visible; color: red");
-                secondsRemaining = secondsRemaining-10;
-            }
-        }
-    })
-    
-    qNum++;
-
-    if (qNum < quiz.length) {
-        nextQuestion();
-    }  
 }
 
-function allDone () {
+function buttonClick (event) {
+    event.stopPropagation();
+    var element = event.target;
+    if (element.matches("button")) {
+        var answer = event.target.textContent;
+        console.log("Your answer: " + answer); //checking the click
+        console.log("Correct answer: " + quiz[qNum].correct); //checking the correct answer
+        if (answer === quiz[qNum].correct) {
+            verdict.textContent = "Correct!";
+            verdict.setAttribute("style", "visibility:visible; color: green");
+            score++;
+            element.blur();
+            qNum++;
+            console.log("qNum is now: " + qNum); // what is qNum now?
+            nextQuestion();
+        } else {
+            verdict.textContent = "Wrong!";
+            verdict.setAttribute("style", "visibility: visible; color: red");
+            secondsRemaining = secondsRemaining-10;
+            element.blur();
+            qNum++;
+            console.log("qNum is now: " + qNum); // what is qNum now?
+            nextQuestion();
+        }
+    }
+}
+
+//questionBox.removeEventListener("click", buttonClick);
+questionBox.addEventListener("click", buttonClick);  
+
+function finalScreen () {
     questionBox.setAttribute("style", "display: none");
+    allDone.setAttribute("style", "display: flex");
+    finalScore.textContent(score);
 }
 
 startButton.addEventListener("click", function () {
     startQuiz.setAttribute("style", "display: none");
-    questionBox.setAttribute("style", "display: flex");
     setTimer();
+    questionBox.setAttribute("style", "display: flex");
     nextQuestion();
 })
 
@@ -114,4 +126,9 @@ console.log(quiz);
 //var randomQuestion = Math.floor(Math.random() * quiz.length);
 //console.log(randomQuestion);
 
-
+/*// for some reason this is causing the start button to jump to final screen
+    if (qNum < quiz.length) {
+        nextQuestion();
+    } else {
+        finalScreen();
+    } */

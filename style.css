@@ -10,7 +10,7 @@ header {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    border: solid 1px chartreuse;
+    /* border: solid 1px chartreuse; */
     height: 10vh;
     padding: 2%;
 }
@@ -20,7 +20,7 @@ main {
     flex-wrap: wrap;
     flex-direction: column;
     width: 100%;
-    border: solid 1px red;
+    /* border: solid 1px red; */
     justify-content: center;
     align-items: center;
     padding: 2% 2% 2% 2%;
@@ -28,9 +28,16 @@ main {
     margin: auto;
 }
 
+/*button:hover {
+    opacity: 70%;
+    transform: scale(1.1);
+}*/
+
 #start-quiz {
     text-align: center;
-    display: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     /* will undo this display none after I'm done styling question */
 }
 
@@ -44,11 +51,7 @@ main {
     color: white;
     border-radius: 5px;
     font-weight: bold;
-}
-
-#start-quiz button:hover {
-    opacity: 70%;
-    transform: scale(1.1);
+    width: 40%;
 }
 
 #question-box {
@@ -70,17 +73,6 @@ main {
     border-radius: 5px;
 }
 
-#question-box button:hover {
-    opacity: 70%;
-    transform: scale(1.1);
-    /* can probably condense all my button:hover styling into one rule */
-}
-
-#question-box button:focus {
-    opacity: 70%;
-    transform: scale(1.1);
-}
-
 #verdict {
     margin-top: 3%;
     padding-top: 1%;
@@ -92,7 +84,7 @@ main {
 }
 
 #all-done {
-    display: flex;
+    display: none;
     flex-wrap: wrap;
     flex-direction: column;
     align-items: flex-start;
@@ -112,7 +104,7 @@ main {
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    border: 1px solid chartreuse;
+    /* border: 1px solid chartreuse; */
     height: 50px;
     position: relative;
 }
@@ -129,10 +121,5 @@ main {
     color: white;
     border-radius: 5px;
     height: 25px;
-}
-
-#submit:hover {
-    opacity: 70%;
-    transform: scale(1.1);
 }
 
