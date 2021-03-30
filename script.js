@@ -13,7 +13,9 @@ var verdict = document.querySelector("#verdict");
 var score = 0;
 var allDone = document.querySelector("#all-done");
 var finalScore = document.querySelector("#final-score");
-
+var isAllDone = false;
+var scoreBoard = document.querySelector("#score-board");
+var scoreListContainer = document.querySelector("score-list");
 
 
 var quiz = [
@@ -65,11 +67,12 @@ function setTimer () {
         countDown.textContent = secondsRemaining;
         if(secondsRemaining === 0) {
             clearInterval(timer);
-        }
+        } else if (isAllDone === true) {
+            clearInterval(timer);
+        }  
     }, 1000);
 }
 
-//You're stuck here. Can't figure out why it only works for the first question. WHen I try to answer the next questions it fires twice on that same button.
 function nextQuestion () {
     questionHeader.textContent = quiz[qNum].question;
     answer1.textContent = quiz[qNum].answer1;
@@ -80,7 +83,7 @@ function nextQuestion () {
 
 function buttonClick (event) {
     event.stopPropagation();
-    var element = event.target; // TODO: is this the place to check for final screen button?
+    var element = event.target;
     if (element.matches("button")) {
         var answer = event.target.textContent;
         console.log("Your answer: " + answer); //checking the click
@@ -117,24 +120,11 @@ function buttonClick (event) {
     } 
 }
 
-function stopTimer () {
-    clearInterval(secondsRemaining);
-}
-
-/*function scoreBoard () {
-    var existing = JSON.parse(localStorage.getItem("storedScores"));
-    var storedScores = storedScores.push(existing);
-    if (storedScores !== null) {
-        s
-    }
-}*/
-
-//TODO: apparently the time is still going even though it was fixed a second ago.
 function finalScreen () {
     questionBox.setAttribute("style", "display: none");
     allDone.setAttribute("style", "display: flex");
     finalScore.textContent = score;
-    stopTimer();
+    isAllDone = true;
     
     submit.addEventListener("click", function(event) {
         event.preventDefault();
@@ -150,11 +140,30 @@ function finalScreen () {
         if (storedScores !== null) {
             storedScores.push(highScore);
             localStorage.setItem("storedScores", JSON.stringify(storedScores));
+            highScores();
         } else {
             localStorage.setItem("storedScores", JSON.stringify(highScore));
+            highScores();
         }
     })
+}
 
+function highScores () {
+    allDone.setAttribute("style", "display: none");
+    scoreBoard.setAttribute("style", "display: flex");
+    var storedScores = JSON.parse(localStorage.getItem("storedScores"));
+    //console.log(storedScores);
+
+    var scoreList = document.createElement("ol");
+    var testScore = document.createElement("li");
+
+    for (i=0; i < storedScores.length; i++) {
+        console.log(storedScores[i].initials + " " + storedScores[i].score);
+        /*testScore.textContent = storedScores[i];
+        console.log(testScore);
+        scoreList.appendChild(testScore);*/
+    }
+    //console.log(scoreList);
 }
 
 questionBox.addEventListener("click", buttonClick);  
@@ -167,13 +176,3 @@ startButton.addEventListener("click", function () {
 })
 
 console.log(quiz);
-
-//var randomQuestion = Math.floor(Math.random() * quiz.length);
-//console.log(randomQuestion);
-
-/*// for some reason this is causing the start button to jump to final screen
-    if (qNum < quiz.length) {
-        nextQuestion();
-    } else {
-        finalScreen();
-    } */

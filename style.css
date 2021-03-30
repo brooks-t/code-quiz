@@ -123,3 +123,31 @@ main {
     height: 25px;
 }
 
+#score-board {
+    display: none;
+    flex-wrap: wrap;
+    width: 100%;
+    border: 1px solid chartreuse;
+    justify-content: flex-start;
+
+}
+
+#score-board h1 {
+    font-size: 175%;
+    width: 100%;
+}
+
+#score-list ol {
+    color: black;
+    background-color: lightpink;
+}
+
+#score-board button {
+    padding: 1%;
+    background-color: slateblue;
+    color: white;
+    height: 25px;
+    border-radius: 5px;
+    margin: 5% 5% 0 0;
+}
+
