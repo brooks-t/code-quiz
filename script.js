@@ -121,7 +121,15 @@ function stopTimer () {
     clearInterval(secondsRemaining);
 }
 
-//TODO: clear the timer
+/*function scoreBoard () {
+    var existing = JSON.parse(localStorage.getItem("storedScores"));
+    var storedScores = storedScores.push(existing);
+    if (storedScores !== null) {
+        s
+    }
+}*/
+
+//TODO: apparently the time is still going even though it was fixed a second ago.
 function finalScreen () {
     questionBox.setAttribute("style", "display: none");
     allDone.setAttribute("style", "display: flex");
@@ -132,13 +140,19 @@ function finalScreen () {
         event.preventDefault();
 
         var highScore = {
-            initials: initials.value,
-            score: score
+                initials: initials.value,
+                score: score
+            }
+
+        var existing = JSON.parse(localStorage.getItem("storedScores"));
+        var storedScores = [existing];
+
+        if (storedScores !== null) {
+            storedScores.push(highScore);
+            localStorage.setItem("storedScores", JSON.stringify(storedScores));
+        } else {
+            localStorage.setItem("storedScores", JSON.stringify(highScore));
         }
-
-        localStorage.setItem("highScore", JSON.stringify(highScore));
-        console.log(highScore);
-
     })
 
 }
