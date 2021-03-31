@@ -1,4 +1,5 @@
 var secondsRemaining = 76;
+var highScoresBtn = document.querySelector("#highscores-btn");
 var startButton = document.querySelector("#start-button");
 var startQuiz = document.querySelector("#start-quiz");
 var countDown = document.querySelector("#count-down");
@@ -17,7 +18,7 @@ var isAllDone = false;
 var scoreBoard = document.querySelector("#score-board");
 var scoreListContainer = document.querySelector("score-list");
 
-
+//arry of objects for populate the quiz
 var quiz = [
     {
         question: "The condition in an if/else statement is enclosed within _____.",
@@ -61,6 +62,7 @@ var quiz = [
     },
 ]
 
+//start the timer
 function setTimer () {
     var timer = setInterval(function() {
         secondsRemaining--;
@@ -73,6 +75,7 @@ function setTimer () {
     }, 1000);
 }
 
+//populate the next question in the array
 function nextQuestion () {
     questionHeader.textContent = quiz[qNum].question;
     answer1.textContent = quiz[qNum].answer1;
@@ -81,6 +84,7 @@ function nextQuestion () {
     answer4.textContent = quiz[qNum].answer4;
 }
 
+//checks the answer and if the quiz is over
 function buttonClick (event) {
     event.stopPropagation();
     var element = event.target;
@@ -120,34 +124,42 @@ function buttonClick (event) {
     } 
 }
 
+//displays score and allows for initials input
+//not sure that I'm storing the initials and scores correctly here
 function finalScreen () {
     questionBox.setAttribute("style", "display: none");
     allDone.setAttribute("style", "display: flex");
     finalScore.textContent = score;
     isAllDone = true;
     
+    //when the submit button is clicked, store the initials and score and take us to the highscore page
     submit.addEventListener("click", function(event) {
         event.preventDefault();
 
+        //store intials and highscore in an object
         var highScore = {
                 initials: initials.value,
                 score: score
             }
+        //pull existing scores    
+        var existingScores = [JSON.parse(localStorage.getItem("existingScores"))];
 
-        var existing = JSON.parse(localStorage.getItem("storedScores"));
-        var storedScores = [existing];
-
-        if (storedScores !== null) {
-            storedScores.push(highScore);
-            localStorage.setItem("storedScores", JSON.stringify(storedScores));
+        //trying to push array of objects to local storage - probably an issue here
+        if (existingScores !== null) {
+            existingScores.push(highScore);
+            localStorage.setItem("existingScores", JSON.stringify(existingScores));
+            console.log(existingScores);
             highScores();
         } else {
-            localStorage.setItem("storedScores", JSON.stringify(highScore));
+            existingScores.push(highScore);
+            localStorage.setItem("existingScores", JSON.stringify(existingScores));
+            console.log(existingScores);
             highScores();
         }
     })
 }
 
+//grabbing high scores and trying to display them in an ordered list
 function highScores () {
     allDone.setAttribute("style", "display: none");
     scoreBoard.setAttribute("style", "display: flex");
@@ -175,4 +187,5 @@ startButton.addEventListener("click", function () {
     nextQuestion();
 })
 
-console.log(quiz);
+
+

@@ -5,16 +5,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Code Quiz</title>
-  <link rel="stylesheet" type="text/css" href="reset.css">
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="./css/reset.css">
+  <link rel="stylesheet" type="text/css" href="./css/style.css">
 </head>
 
 <body>
   <header>
-    <a href="#">View Highscores</a>
+    <button id="highscores-btn">View Highscores</button>
     <p>Time: <spand id="count-down">0</spand></p>
   </header>
   <main>
+    <!-- starting page -->
     <section id="start-quiz">
       <h1>Coding Quiz Challenge</h1>
       <br>
@@ -22,8 +23,9 @@
       <br>
       <button id="start-button">Start Quiz</button>
     </section>
+    <!-- container for question and answers -->
     <section id="question-box">
-      <!-- you'll use js to write to these from questions and answers stored as objects-->
+
       <h2 id="question-header"></h2>
       <br>
       <button id="answer-1"></button>
@@ -32,6 +34,7 @@
       <button id="answer-4"></button>
       <p id="verdict"></p>
     </section>
+    <!-- initals entry page -->
     <section id="all-done">
       <h2 id="all-done-header">All done!</h2>
       <br>
@@ -43,18 +46,17 @@
         <button id="submit">Submit</button>
       </form>
     </section>
+    <!-- high-score page -->
     <section id="score-board">
-      <!-- TODO: create scoreboard -->
       <h1>Highscores</h1>
       <div id="score-list"></div>
       <button id="go-back">Go Back</button>
       <button id="clear">Clear Highscores</button>
     </section>
-
   </main>
 
 
-  <script src="script.js"></script>
+  <script src="./js/script.js"></script>
 
 </body>
 </html>
